@@ -99,7 +99,7 @@ Now let's jump to the fun stuff. 🎉
 
 ## Add `Query` to `Annotated` in the `q` parameter
 
-Now that we have this `Annotated` where we can put more metadata, add `Query` to it, and set the parameter `max_length` to 50:
+Now that we have this `Annotated` where we can put more information (in this case some additional validation), add `Query` inside of `Annotated`, and set the parameter `max_length` to `50`:
 
 === "Python 3.10+"
 
@@ -115,7 +115,11 @@ Now that we have this `Annotated` where we can put more metadata, add `Query` to
 
 Notice that the default value is still `None`, so the parameter is still optional.
 
-But now, having `Query(max_length=50)` inside of `Annotated`, we are telling FastAPI that we want it to extract this value from the query parameters (this would have been the default anyway 🤷) and that we want to have **additional validation** for this value (that's why we do this, to get the additional validation). 😎
+But now, having `Query(max_length=50)` inside of `Annotated`, we are telling FastAPI that we want it to have **additional validation** for this value, we want it to have maximum 50 characters. 😎
+
+!!! tip
+
+    Here we are using `Query()` because this is a **query parameter**. Later we will see others like `Path()`, `Body()`, `Header()`, and `Cookie()`, that also accept the same arguments as `Query()`.
 
 FastAPI will now:
 
@@ -173,7 +177,7 @@ q: str | None = None
 But it declares it explicitly as being a query parameter.
 
 !!! info
-    Have in mind that the most important part to make a parameter optional is the part:
+    Keep in mind that the most important part to make a parameter optional is the part:
 
     ```Python
     = None
@@ -199,7 +203,7 @@ This will validate the data, show a clear error when the data is not valid, and 
 
 ### `Query` as the default value or in `Annotated`
 
-Have in mind that when using `Query` inside of `Annotated` you cannot use the `default` parameter for `Query`.
+Keep in mind that when using `Query` inside of `Annotated` you cannot use the `default` parameter for `Query`.
 
 Instead use the actual default value of the function parameter. Otherwise, it would be inconsistent.
 
@@ -500,7 +504,7 @@ To do that, you can declare that `None` is a valid type but still use `...` as t
     ```
 
 !!! tip
-    Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
+    Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
 
 !!! tip
     Remember that in most of the cases, when something is required, you can simply omit the default, so you normally don't have to use `...`.
@@ -659,7 +663,7 @@ You can also use `list` directly instead of `List[str]` (or `list[str]` in Pytho
     ```
 
 !!! note
-    Have in mind that in this case, FastAPI won't check the contents of the list.
+    Keep in mind that in this case, FastAPI won't check the contents of the list.
 
     For example, `List[int]` would check (and document) that the contents of the list are integers. But `list` alone wouldn't.
 
@@ -670,7 +674,7 @@ You can add more information about the parameter.
 That information will be included in the generated OpenAPI and used by the documentation user interfaces and external tools.
 
 !!! note
-    Have in mind that different tools might have different levels of OpenAPI support.
+    Keep in mind that different tools might have different levels of OpenAPI support.
 
     Some of them might not show all the extra information declared yet, although in most of the cases, the missing feature is already planned for development.
 

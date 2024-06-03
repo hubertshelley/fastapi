@@ -92,11 +92,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
     ```
 
 !!! note
-    A path parameter is always required as it has to be part of the path.
-
-    So, you should declare it with `...` to mark it as required.
-
-    Nevertheless, even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
+    A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
 
 ## Order the parameters as you need
 
@@ -126,7 +122,7 @@ So, you can declare your function as:
     {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
     ```
 
-But have in mind that if you use `Annotated`, you won't have this problem, it won't matter as you're not using the function parameter default values for `Query()` or `Path()`.
+But keep in mind that if you use `Annotated`, you won't have this problem, it won't matter as you're not using the function parameter default values for `Query()` or `Path()`.
 
 === "Python 3.9+"
 
@@ -166,7 +162,7 @@ Python won't do anything with that `*`, but it will know that all the following 
 
 ### Better with `Annotated`
 
-Have in mind that if you use `Annotated`, as you are not using function parameter default values, you won't have this problem, and you probably won't need to use `*`.
+Keep in mind that if you use `Annotated`, as you are not using function parameter default values, you won't have this problem, and you probably won't need to use `*`.
 
 === "Python 3.9+"
 
